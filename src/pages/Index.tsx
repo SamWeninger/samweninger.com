@@ -1,20 +1,59 @@
-
 import { data } from "@/data/content";
-import { motion } from "framer-motion";
+import { motion, useScroll } from "framer-motion";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Index = () => {
   const [activeImage, setActiveImage] = useState(0);
+  const { scrollY } = useScroll();
+  const [visible, setVisible] = useState(false);
+
+  scrollY.onChange((latest) => {
+    setVisible(latest > 100);
+  });
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background">
+      <motion.nav
+        initial={{ y: -100 }}
+        animate={{ y: visible ? 0 : -100 }}
+        transition={{ duration: 0.2 }}
+        className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-sm shadow-sm"
+      >
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-center h-16 gap-8">
+            {[
+              { title: "Home", id: "home" },
+              { title: "Work", id: "work" },
+              { title: "Projects", id: "projects" },
+              { title: "Education", id: "education" },
+            ].map((item) => (
+              <button
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className="text-primary hover:text-accent transition-colors duration-200"
+              >
+                {item.title}
+              </button>
+            ))}
+          </div>
+        </div>
+      </motion.nav>
+
       <div className="container px-4 py-16 mx-auto">
         <motion.div
+          id="home"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-16 pt-8"
         >
           <h1 className="text-4xl md:text-6xl font-bold mb-4">
             {data.home.fName} {data.home.lName}
@@ -62,7 +101,7 @@ const Index = () => {
         </motion.div>
 
         <div className="space-y-16">
-          <section>
+          <section id="work">
             <h2 className="text-2xl md:text-3xl font-bold mb-8">Work Experience</h2>
             <div className="space-y-8">
               {data.work.jobs.map((job, index) => (
@@ -92,7 +131,7 @@ const Index = () => {
             </div>
           </section>
 
-          <section>
+          <section id="projects">
             <h2 className="text-2xl md:text-3xl font-bold mb-8">Projects</h2>
             <div className="grid md:grid-cols-2 gap-8">
               {data.projects.items.map((project, index) => (
@@ -138,7 +177,7 @@ const Index = () => {
             </div>
           </section>
 
-          <section>
+          <section id="education">
             <h2 className="text-2xl md:text-3xl font-bold mb-8">Education</h2>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
