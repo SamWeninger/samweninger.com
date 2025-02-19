@@ -1,3 +1,4 @@
+
 import { data } from "@/data/content";
 import { motion, useScroll } from "framer-motion";
 import { useState } from "react";
@@ -15,7 +16,14 @@ const Index = () => {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      const offset = 100; // Adjust this value based on your navbar height + some padding
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
     }
   };
 
