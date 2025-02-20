@@ -4,6 +4,15 @@ import { motion, useScroll } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
+declare global {
+  interface Window {
+    goatcounter?: {
+      count: (opts: { path: string; title: string; event: boolean }) => void;
+      get_query: (path: string, callback: (data: any) => void) => void;
+    };
+  }
+}
+
 const Index = () => {
   const [activeImage, setActiveImage] = useState(0);
   const { scrollY } = useScroll();
@@ -11,15 +20,21 @@ const Index = () => {
   const [pageViews, setPageViews] = useState<number | null>(null);
 
   useEffect(() => {
-    // Fetch total page views from GoatCounter API
-    fetch('https://samweninger.goatcounter.com/counter/total.json')
-      .then(response => response.json())
-      .then(data => {
-        setPageViews(data.total);
-      })
-      .catch(error => {
-        console.error('Error fetching page views:', error);
-      });
+    // Wait for GoatCounter to load
+    const checkGoatCounter = setInterval(() => {
+      if (window.goatcounter?.get_query) {
+        clearInterval(checkGoatCounter);
+        
+        // Get total page views using GoatCounter's JavaScript API
+        window.goatcounter.get_query('count', (data: any) => {
+          const total = data.count.reduce((sum: number, item: any) => sum + item.count, 0);
+          setPageViews(total);
+        });
+      }
+    }, 1000);
+
+    // Cleanup interval
+    return () => clearInterval(checkGoatCounter);
   }, []);
 
   scrollY.onChange((latest) => {
