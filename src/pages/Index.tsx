@@ -1,3 +1,4 @@
+
 import { data } from "@/data/content";
 import { motion, useScroll } from "framer-motion";
 import { useState } from "react";
@@ -15,7 +16,7 @@ const Index = () => {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      const offset = 100; // Adjust this value based on your navbar height + some padding
+      const offset = 100;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - offset;
       
@@ -92,13 +93,13 @@ const Index = () => {
           {data.home.pics.map((pic, index) => (
             <div
               key={index}
-              className="relative overflow-hidden rounded-lg aspect-video"
+              className="relative overflow-hidden rounded-lg aspect-[4/3]"
               onMouseEnter={() => setActiveImage(index)}
             >
               <img
                 src={pic.img}
                 alt={pic.text}
-                className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
+                className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-300 hover:scale-105"
               />
               <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent">
                 <p className="text-white text-sm">{pic.text}</p>
@@ -149,7 +150,7 @@ const Index = () => {
                   transition={{ duration: 0.5 }}
                   className="p-6 rounded-lg bg-muted"
                 >
-                  <div className="relative h-48 mb-4">
+                  <div className="relative h-36 mb-4">
                     <img
                       src={project.img}
                       alt={project.project.title}
