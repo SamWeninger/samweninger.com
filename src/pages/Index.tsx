@@ -99,7 +99,7 @@ const Index = () => {
               <img
                 src={pic.img}
                 alt={pic.text}
-                className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-300 hover:scale-105"
+                className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-300 hover:scale-105"
               />
               <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent">
                 <p className="text-white text-sm">{pic.text}</p>
