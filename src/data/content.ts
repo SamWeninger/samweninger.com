@@ -64,7 +64,7 @@ export const data = {
       {
         img: "/resume.png",
         color: "#ffffff",
-        project: {title: "Resume", link: "https://raw.githubusercontent.com/SamWeninger/Awesome-CV/master/examples/cv.png"},
+        project: {title: "Resume", link: "https://raw.githubusercontent.com/SamWeninger/Awesome-CV/master/examples/image.png"},
         github: "https://github.com/SamWeninger/Awesome-CV",
         timeline: "",
         description: "Resume created using Awesome-CV template",
