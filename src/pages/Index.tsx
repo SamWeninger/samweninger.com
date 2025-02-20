@@ -78,7 +78,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background flex flex-col">
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: visible ? 0 : -100 }}
@@ -105,7 +105,7 @@ const Index = () => {
         </div>
       </motion.nav>
 
-      <div className="container px-4 py-16 mx-auto">
+      <div className="container px-4 py-16 mx-auto flex-grow">
         <motion.div
           id="home"
           initial={{ opacity: 0, y: 20 }}
@@ -293,6 +293,14 @@ const Index = () => {
           </section>
         </div>
       </div>
+      
+      <footer className="py-8 bg-muted mt-16">
+        <div className="container mx-auto px-4">
+          <p className="text-center text-sm text-secondary">
+            Developed by {data.home.fName} {data.home.lName} © 2022
+          </p>
+        </div>
+      </footer>
     </div>
   );
 };
