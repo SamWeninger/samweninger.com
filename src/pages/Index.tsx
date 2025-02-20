@@ -1,13 +1,26 @@
 
 import { data } from "@/data/content";
 import { motion, useScroll } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Index = () => {
   const [activeImage, setActiveImage] = useState(0);
   const { scrollY } = useScroll();
   const [visible, setVisible] = useState(false);
+  const [pageViews, setPageViews] = useState<number | null>(null);
+
+  useEffect(() => {
+    // Fetch total page views from GoatCounter API
+    fetch('https://samweninger.goatcounter.com/counter/total.json')
+      .then(response => response.json())
+      .then(data => {
+        setPageViews(data.total);
+      })
+      .catch(error => {
+        console.error('Error fetching page views:', error);
+      });
+  }, []);
 
   scrollY.onChange((latest) => {
     setVisible(latest > 100);
@@ -69,6 +82,11 @@ const Index = () => {
           <p className="text-lg md:text-xl text-secondary mb-8">
             {data.home.description}
           </p>
+          {pageViews !== null && (
+            <p className="text-sm text-gray-600 mb-4">
+              👀 {pageViews} page views
+            </p>
+          )}
           <div className="flex justify-center gap-4">
             {Object.entries(data.footer).map(([platform, link]) => (
               <a
