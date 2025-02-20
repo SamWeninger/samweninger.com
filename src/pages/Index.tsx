@@ -3,6 +3,7 @@ import { data } from "@/data/content";
 import { motion, useScroll } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { Github, Linkedin, MessageSquare, Trophy } from "lucide-react";
 
 declare global {
   interface Window {
@@ -52,6 +53,27 @@ const Index = () => {
         top: offsetPosition,
         behavior: "smooth"
       });
+    }
+  };
+
+  const handleMessageClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const email = "samweninger" + "@" + "gmail.com";
+    window.location.href = `mailto:${email}?subject=Hello from your website`;
+  };
+
+  const getIconForPlatform = (platform: string) => {
+    switch (platform) {
+      case 'github':
+        return <Github className="w-5 h-5" />;
+      case 'linkedin':
+        return <Linkedin className="w-5 h-5" />;
+      case 'hockey':
+        return <Trophy className="w-5 h-5" />;
+      case 'message':
+        return <MessageSquare className="w-5 h-5" />;
+      default:
+        return null;
     }
   };
 
@@ -106,12 +128,14 @@ const Index = () => {
             {Object.entries(data.footer).map(([platform, link]) => (
               <a
                 key={platform}
-                href={link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-primary hover:text-accent transition-colors duration-200"
+                href={platform === 'message' ? '#' : link}
+                onClick={platform === 'message' ? handleMessageClick : undefined}
+                target={platform === 'message' ? undefined : "_blank"}
+                rel={platform === 'message' ? undefined : "noopener noreferrer"}
+                className="text-primary hover:text-accent transition-colors duration-200 flex items-center gap-2"
               >
-                {platform}
+                {getIconForPlatform(platform)}
+                <span>{platform}</span>
               </a>
             ))}
           </div>
