@@ -1,4 +1,3 @@
-
 import { data } from "@/data/content";
 import { motion, useScroll } from "framer-motion";
 import { useState } from "react";
@@ -150,11 +149,13 @@ const Index = () => {
                   transition={{ duration: 0.5 }}
                   className="p-6 rounded-lg bg-muted"
                 >
-                  <img
-                    src={project.img}
-                    alt={project.project.title}
-                    className="w-full h-48 object-cover rounded-lg mb-4"
-                  />
+                  <div className="relative h-48 mb-4">
+                    <img
+                      src={project.img}
+                      alt={project.project.title}
+                      className="w-full h-full object-contain rounded-lg"
+                    />
+                  </div>
                   <h3 className="font-bold mb-2">{project.project.title}</h3>
                   <p className="text-sm text-secondary mb-4">{project.timeline}</p>
                   <p className="text-sm mb-4">{project.description}</p>
