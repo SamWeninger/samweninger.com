@@ -12,7 +12,7 @@ export const data = {
     ],
     fName: "sam",
     lName: "weninger",
-    description: "Software engineer at Microsoft. Ineligible NHL draft prospect."
+    description: "Software engineer. Ineligible NHL draft prospect."
   },
   projects: {
     items: [
@@ -75,13 +75,13 @@ export const data = {
   work: {
     jobs: [
       {
-        img: "/microsoft.jpeg",
+        img: "/microsoft.png",
         color: "white",
         company: "Microsoft",
         role: "Software Engineer",
-        location: "Bellevue, Washington",
-        timeline: "September 2022 - Present",
-        description: "Software Engineer on the Web Experiences Team (WebXT) team at Microsoft."
+        location: "Redmond, Washington",
+        timeline: "September 2022 - August 2024",
+        description: "Software Engineer on the Web Experiences Team (WebXT) team at Microsoft. Implemented language backfill logic and enhanced language extraction for +2 Billion URLs indexed by Bing, exposing rich content for +100 million businesses in +150 different markets on Bing (C#). Improved the coverage of Bing Amenities for +6 Million new businesses (+55% feature coverage improvement). Enhanced Bing Amenities quality by +30% leveraging LLMs, benefiting +14M businesses and reducing the frequency of user-reported bugs by +80% (C#, Python). Engineered an automated pipeline (ADF) for discovering new domains for Bing; onboarded +500 new providers, enriching data for +2.7B businesses. Managed a vendor team to develop models for HTML content extraction from new domains, integrating content into Bing (SQL). Developed a real-time monitoring dashboard for Bing rich data with routed alerts for quick, on-call response to data outages and bugs (HTML)."
       },
       {
         img: "/huawei.png",
