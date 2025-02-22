@@ -14,11 +14,11 @@
 }
 
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+  filter: drop-shadow(0 0 1em rgba(100, 108, 255, 0.4));
 }
 
 .logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+  filter: drop-shadow(0 0 1em rgba(97, 218, 251, 0.4));
 }
 
 @keyframes logo-spin {
@@ -38,32 +38,46 @@
 
 .card {
   padding: 2em;
-  transition: transform 0.3s ease;
+  transition: transform 0.2s ease;
 }
 
 .card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-3px);
 }
 
 .read-the-docs {
   color: #888;
 }
 
-/* Enhanced transitions */
+/* Softer transitions */
 .transition-all {
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 300ms;
+  transition-duration: 200ms;
 }
 
-/* Gradient animations */
+/* Reduced gradient animations */
 .animate-gradient {
-  background-size: 200% auto;
-  animation: shine 8s linear infinite;
+  background-size: 150% auto;
+  animation: shine 10s linear infinite;
 }
 
-/* Floating animation */
+/* Gentler floating animation */
 .animate-float {
-  animation: float 6s ease-in-out infinite;
+  animation: float 8s ease-in-out infinite;
 }
 
+/* Fix text containment */
+.text-container {
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+/* Prevent image overflow */
+.img-container {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
