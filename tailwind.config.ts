@@ -45,20 +45,20 @@ export default {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         primary: {
-          DEFAULT: '#333333',
-          foreground: '#FFFFFF'
+          DEFAULT: 'hsl(var(--primary))',
+          foreground: 'hsl(var(--primary-foreground))'
         },
         secondary: {
-          DEFAULT: '#666666',
-          foreground: '#FFFFFF'
+          DEFAULT: 'hsl(var(--secondary))',
+          foreground: 'hsl(var(--secondary-foreground))'
         },
         muted: {
-          DEFAULT: '#F5F5F5',
-          foreground: '#666666'
+          DEFAULT: 'hsl(var(--muted))',
+          foreground: 'hsl(var(--muted-foreground))'
         },
         accent: {
-          DEFAULT: '#007AFF',
-          foreground: '#FFFFFF'
+          DEFAULT: 'hsl(var(--accent))',
+          foreground: 'hsl(var(--accent-foreground))'
         },
       },
       keyframes: {
@@ -69,11 +69,20 @@ export default {
         'fade-in-up': {
           '0%': { opacity: '0', transform: 'translateY(20px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' }
+        },
+        float: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-10px)' }
+        },
+        shine: {
+          to: { backgroundPosition: '200% center' }
         }
       },
       animation: {
         'fade-in': 'fade-in 0.5s ease-out',
-        'fade-in-up': 'fade-in-up 0.7s ease-out'
+        'fade-in-up': 'fade-in-up 0.7s ease-out',
+        'float': 'float 6s ease-in-out infinite',
+        'shine': 'shine 8s linear infinite'
       }
     }
   },
