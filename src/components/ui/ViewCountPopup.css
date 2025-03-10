@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.view-count-popup {
+  @apply fixed bottom-4 right-4 bg-[hsl(var(--sidebar-background))] text-black p-2 rounded-full shadow-lg z-50 flex items-center;
+  @apply hidden sm:flex;
+}
+
+.eye-icon {
+  @apply w-4 h-4 mr-1;
+}
+
+.close-button {
+  @apply bg-transparent border-none text-gray-500 text-sm cursor-pointer ml-2 hidden;
+}
+
+.view-count-popup:hover .close-button {
+  @apply inline;
+} 
