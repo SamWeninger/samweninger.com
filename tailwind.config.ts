@@ -52,7 +52,7 @@ export default {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         primary: {
-          DEFAULT: '#111111',
+          DEFAULT: '#0D0D0D', // Slightly darker black
           foreground: '#FFFFFF'
         },
         secondary: {
@@ -64,8 +64,8 @@ export default {
           foreground: '#555555'
         },
         accent: {
-          DEFAULT: '#000000',
-          foreground: '#FFFFFF'
+          DEFAULT: '#EFEFEF', // Light gray accent
+          foreground: '#0D0D0D'
         },
       },
       keyframes: {
@@ -76,14 +76,20 @@ export default {
         'fade-in-up': {
           '0%': { opacity: '0', transform: 'translateY(20px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' }
+        },
+        'fade-in-right': {
+          '0%': { opacity: '0', transform: 'translateX(20px)' },
+          '100%': { opacity: '1', transform: 'translateX(0)' }
         }
       },
       animation: {
         'fade-in': 'fade-in 0.5s ease-out',
-        'fade-in-up': 'fade-in-up 0.7s ease-out'
+        'fade-in-up': 'fade-in-up 0.7s ease-out',
+        'fade-in-right': 'fade-in-right 0.7s ease-out'
       },
       boxShadow: {
         'subtle': '0 4px 20px rgba(0, 0, 0, 0.05)',
+        'card': '0 10px 30px rgba(0, 0, 0, 0.03)',
       }
     }
   },

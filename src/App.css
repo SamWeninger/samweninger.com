@@ -26,6 +26,9 @@
   display: inline-block;
   font-weight: 700;
   margin-bottom: 2rem;
+  font-size: 1.25rem;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
 }
 
 .section-title::after {
@@ -33,15 +36,15 @@
   position: absolute;
   left: 0;
   bottom: -6px;
-  width: 40px;
-  height: 3px;
+  width: 30px;
+  height: 2px;
   background-color: #000;
 }
 
 .skill-pill {
   display: inline-block;
   padding: 0.35rem 0.75rem;
-  background-color: #f0f0f0;
+  background-color: #f3f3f3;
   color: #333;
   border-radius: 50px;
   font-size: 0.75rem;
@@ -56,7 +59,35 @@
 
 .card-hover:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+}
+
+.bg-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+}
+
+.timeline-dot::before {
+  content: '';
+  position: absolute;
+  left: -18px;
+  top: 10px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #000;
+}
+
+.timeline-line::before {
+  content: '';
+  position: absolute;
+  left: -14px;
+  top: 20px;
+  bottom: 0;
+  width: 1px;
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 @font-face {

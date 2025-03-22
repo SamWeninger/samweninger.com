@@ -2,10 +2,10 @@
 import { data } from "@/data/content";
 import { motion, useScroll } from "framer-motion";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { ArrowRight, ExternalLink, Github, Linkedin, Mail, MapPin, Clock, Trophy } from "lucide-react";
+import { ArrowRight, ExternalLink, Github, Linkedin, Mail, MapPin, Clock, Trophy, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 declare global {
   interface Window {
@@ -20,7 +20,9 @@ const Index = () => {
   const [activeImage, setActiveImage] = useState(0);
   const { scrollY } = useScroll();
   const [visible, setVisible] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [pageViews, setPageViews] = useState<number | null>(null);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     // Wait for GoatCounter to load
@@ -45,6 +47,7 @@ const Index = () => {
   });
 
   const scrollToSection = (id: string) => {
+    setMenuOpen(false);
     const element = document.getElementById(id);
     if (element) {
       const offset = 100;
@@ -79,6 +82,13 @@ const Index = () => {
     }
   };
 
+  const menuItems = [
+    { title: "Home", id: "home" },
+    { title: "Work", id: "work" },
+    { title: "Projects", id: "projects" },
+    { title: "Education", id: "education" },
+  ];
+
   return (
     <div className="min-h-screen bg-white text-black flex flex-col">
       <motion.nav
@@ -87,27 +97,54 @@ const Index = () => {
         transition={{ duration: 0.2 }}
         className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100"
       >
-        <div className="container mx-auto">
-          <div className="flex items-center justify-center h-16 gap-10">
-            {[
-              { title: "Home", id: "home" },
-              { title: "Work", id: "work" },
-              { title: "Projects", id: "projects" },
-              { title: "Education", id: "education" },
-            ].map((item) => (
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between h-16">
+            <div className="font-bold text-lg">SW</div>
+            
+            {isMobile ? (
+              <div className="block">
+                <button
+                  onClick={() => setMenuOpen(!menuOpen)}
+                  className="p-2"
+                >
+                  {menuOpen ? <X size={24} /> : <Menu size={24} />}
+                </button>
+              </div>
+            ) : (
+              <div className="hidden md:flex items-center space-x-8">
+                {menuItems.map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => scrollToSection(item.id)}
+                    className="text-black hover:text-gray-600 transition-colors duration-200 text-sm font-medium"
+                  >
+                    {item.title}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      </motion.nav>
+
+      {/* Mobile menu */}
+      {menuOpen && isMobile && (
+        <div className="fixed inset-0 bg-white z-40 pt-20 px-6">
+          <div className="flex flex-col space-y-6 pt-6">
+            {menuItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="text-black hover:text-gray-600 transition-colors duration-200 text-sm font-medium"
+                className="text-black text-2xl font-medium border-b border-gray-100 pb-4"
               >
                 {item.title}
               </button>
             ))}
           </div>
         </div>
-      </motion.nav>
+      )}
 
-      <div className="container mx-auto flex-grow">
+      <div className="container mx-auto flex-grow px-4">
         <motion.div
           id="home"
           initial={{ opacity: 0, y: 20 }}
@@ -116,7 +153,7 @@ const Index = () => {
           className="flex flex-col md:flex-row items-center justify-between py-24 md:py-32 gap-10"
         >
           <div className="max-w-xl">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight leading-tight">
               Hello! I'm {data.home.fName} {data.home.lName}
             </h1>
             <p className="text-lg text-gray-600 mb-8 leading-relaxed">
@@ -135,7 +172,7 @@ const Index = () => {
                   onClick={platform === 'message' ? handleMessageClick : undefined}
                   target={platform === 'message' ? undefined : "_blank"}
                   rel={platform === 'message' ? undefined : "noopener noreferrer"}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors text-sm font-medium"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black text-white hover:bg-gray-800 transition-colors text-sm font-medium"
                 >
                   {getIconForPlatform(platform)}
                   <span className="capitalize">{platform}</span>
@@ -149,7 +186,7 @@ const Index = () => {
                 key={index}
                 whileHover={{ scale: 1.03 }}
                 transition={{ duration: 0.2 }}
-                className="relative overflow-hidden rounded-lg aspect-square shadow-subtle"
+                className="relative overflow-hidden rounded-lg aspect-square shadow-card"
               >
                 <img
                   src={pic.img}
@@ -174,9 +211,9 @@ const Index = () => {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5 }}
-                  className="card-hover group p-6 rounded-xl bg-white border border-gray-100 shadow-subtle"
+                  className="card-hover group p-6 md:p-8 rounded-xl bg-white border border-gray-100 shadow-card relative"
                 >
-                  <div className="flex items-start gap-4 mb-4">
+                  <div className="flex items-start gap-6">
                     <div className="w-12 h-12 rounded-md overflow-hidden flex-shrink-0 bg-gray-50 flex items-center justify-center">
                       <img
                         src={job.img}
@@ -185,12 +222,12 @@ const Index = () => {
                       />
                     </div>
                     <div className="flex-1">
-                      <div className="flex items-start justify-between">
+                      <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2">
                         <div>
-                          <h3 className="font-bold text-lg">{job.company}</h3>
+                          <h3 className="font-bold text-xl">{job.company}</h3>
                           <p className="text-gray-600 font-medium">{job.role}</p>
                         </div>
-                        <div className="text-right text-sm text-gray-500">
+                        <div className="text-right text-sm text-gray-500 flex-shrink-0">
                           <div className="flex items-center gap-1">
                             <Clock className="w-3 h-3" />
                             <span>{job.timeline}</span>
@@ -218,7 +255,7 @@ const Index = () => {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5 }}
-                  className="card-hover group overflow-hidden rounded-xl bg-white border border-gray-100 shadow-subtle"
+                  className="card-hover group overflow-hidden rounded-xl bg-white border border-gray-100 shadow-card"
                 >
                   <div className="h-48 overflow-hidden relative">
                     <img
@@ -289,9 +326,9 @@ const Index = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="card-hover group p-6 rounded-xl bg-white border border-gray-100 shadow-subtle"
+              className="card-hover group p-6 md:p-8 rounded-xl bg-white border border-gray-100 shadow-card"
             >
-              <div className="flex items-start gap-4">
+              <div className="flex items-start gap-6">
                 <div className="w-12 h-12 rounded-md overflow-hidden flex-shrink-0 bg-gray-50 flex items-center justify-center">
                   <img
                     src={data.education.image}
@@ -302,11 +339,11 @@ const Index = () => {
                 <div className="flex-1">
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
                     <div>
-                      <h3 className="font-bold text-lg">{data.education.school}</h3>
+                      <h3 className="font-bold text-xl">{data.education.school}</h3>
                       <p className="text-gray-600">{data.education.degree}</p>
                       <p className="text-gray-600">{data.education.major}</p>
                     </div>
-                    <div className="text-sm bg-gray-100 px-3 py-1 rounded-full text-gray-700">
+                    <div className="text-sm bg-black text-white px-3 py-1 rounded-full">
                       GPA: {data.education.gpa}
                     </div>
                   </div>
@@ -346,7 +383,7 @@ const Index = () => {
       </div>
       
       <footer className="mt-20 py-10 bg-gray-50">
-        <div className="container mx-auto">
+        <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-sm text-gray-500">
               © {new Date().getFullYear()} {data.home.fName} {data.home.lName}
