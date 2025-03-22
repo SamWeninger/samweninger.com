@@ -219,6 +219,21 @@ const Index = () => {
                   <h3 className="font-bold mb-2">{project.project.title}</h3>
                   <p className="text-sm text-secondary mb-4">{project.timeline}</p>
                   <p className="text-sm mb-4">{project.description}</p>
+                  {project.skills && (
+                    <div className="mb-4">
+                      <h4 className="text-sm font-semibold mb-2">Skills</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {project.skills.split(", ").map((skill, i) => (
+                          <span 
+                            key={i} 
+                            className="text-xs px-2 py-1 bg-accent/10 text-accent rounded-full"
+                          >
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                   <div className="flex gap-4">
                     {project.project.link && (
                       <a
