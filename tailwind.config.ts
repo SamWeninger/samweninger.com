@@ -13,7 +13,13 @@ export default {
   theme: {
     container: {
       center: true,
-      padding: '2rem',
+      padding: {
+        DEFAULT: '1rem',
+        sm: '2rem',
+        lg: '4rem',
+        xl: '5rem',
+        '2xl': '6rem',
+      },
       screens: {
         'sm': '640px',
         'md': '768px',
@@ -25,6 +31,7 @@ export default {
     extend: {
       fontFamily: {
         sans: [
+          'Inter',
           '-apple-system',
           'BlinkMacSystemFont',
           'Segoe UI',
@@ -45,19 +52,19 @@ export default {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         primary: {
-          DEFAULT: '#333333',
+          DEFAULT: '#111111',
           foreground: '#FFFFFF'
         },
         secondary: {
-          DEFAULT: '#666666',
+          DEFAULT: '#555555',
           foreground: '#FFFFFF'
         },
         muted: {
-          DEFAULT: '#F5F5F5',
-          foreground: '#666666'
+          DEFAULT: '#F8F8F8',
+          foreground: '#555555'
         },
         accent: {
-          DEFAULT: '#007AFF',
+          DEFAULT: '#000000',
           foreground: '#FFFFFF'
         },
       },
@@ -74,6 +81,9 @@ export default {
       animation: {
         'fade-in': 'fade-in 0.5s ease-out',
         'fade-in-up': 'fade-in-up 0.7s ease-out'
+      },
+      boxShadow: {
+        'subtle': '0 4px 20px rgba(0, 0, 0, 0.05)',
       }
     }
   },
