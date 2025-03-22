@@ -181,7 +181,7 @@ const Index = () => {
 
   const handleMessageClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    const email = "samweninger" + "@" + "gmail.com";
+    const email = "sweninger99" + "@" + "gmail.com";
     window.location.href = `mailto:${email}?subject=Hello from your website`;
   };
 
@@ -506,7 +506,7 @@ const Index = () => {
           <div className="container mx-auto px-4">
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
               <p className="text-sm text-gray-500">
-                © {new Date().getFullYear()} {data.home.fName} {data.home.lName}
+                © 2022 {data.home.fName} {data.home.lName}
               </p>
               
               <div className="flex gap-6">
