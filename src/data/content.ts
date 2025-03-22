@@ -64,11 +64,11 @@ export const data = {
       {
         img: "/resume.png",
         color: "#ffffff",
-        project: {title: "Resume", link: "https://raw.githubusercontent.com/SamWeninger/Awesome-CV/master/examples/image.png"},
-        github: "https://github.com/SamWeninger/Awesome-CV",
+        project: {title: "Resume", link: "https://github.com/SamWeninger/resume/blob/main/images/resume.png"},
+        github: "https://github.com/SamWeninger/resume",
         timeline: "",
-        description: "Resume created using Awesome-CV template",
-        skills: "LaTex"
+        description: "Resume created using LaTex. Made to be easily editable and customizable.",
+        skills: "LaTex, Bash"
       }
     ]
   },
