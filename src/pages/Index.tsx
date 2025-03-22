@@ -1,8 +1,8 @@
 
 import { data } from "@/data/content";
-import { motion, useScroll } from "framer-motion";
+import { motion, useScroll, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
-import { ArrowRight, ExternalLink, Github, Linkedin, Mail, MapPin, Clock, Trophy, Menu, X } from "lucide-react";
+import { ArrowRight, ExternalLink, Github, Linkedin, Mail, MapPin, Clock, Trophy, Menu, X, ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -15,6 +15,96 @@ declare global {
     };
   }
 }
+
+// Mobile collapsible component
+const MobileCollapsible = ({ 
+  title, 
+  subtitle, 
+  timeline, 
+  location, 
+  children, 
+  defaultOpen = false 
+}: { 
+  title: string; 
+  subtitle?: string; 
+  timeline?: string; 
+  location?: string; 
+  children: React.ReactNode; 
+  defaultOpen?: boolean;
+}) => {
+  const [isOpen, setIsOpen] = useState(defaultOpen);
+  const isMobile = useIsMobile();
+
+  if (!isMobile) {
+    return (
+      <div className="w-full">
+        <div className="flex justify-between items-start gap-2 mb-4">
+          <div>
+            <h3 className="font-bold text-xl">{title}</h3>
+            {subtitle && <p className="text-gray-600 font-medium">{subtitle}</p>}
+          </div>
+          {(timeline || location) && (
+            <div className="text-right text-sm text-gray-500 flex-shrink-0">
+              {timeline && (
+                <div className="flex items-center gap-1">
+                  <Clock className="w-3 h-3" />
+                  <span>{timeline}</span>
+                </div>
+              )}
+              {location && (
+                <div className="flex items-center gap-1 mt-1">
+                  <MapPin className="w-3 h-3" />
+                  <span>{location}</span>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+        {children}
+      </div>
+    );
+  }
+
+  return (
+    <div className="w-full">
+      <button 
+        onClick={() => setIsOpen(!isOpen)} 
+        className="w-full flex justify-between items-start gap-2 py-3"
+      >
+        <div className="text-left">
+          <h3 className="font-bold text-lg">{title}</h3>
+          {subtitle && <p className="text-gray-600 text-sm">{subtitle}</p>}
+        </div>
+        <div className="flex items-center">
+          {timeline && (
+            <div className="text-xs text-gray-500 mr-2">{timeline}</div>
+          )}
+          {isOpen ? (
+            <ChevronUp className="h-5 w-5" />
+          ) : (
+            <ChevronDown className="h-5 w-5" />
+          )}
+        </div>
+      </button>
+      
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="overflow-hidden"
+          >
+            <div className="pt-2 pb-4">
+              {children}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
 
 const Index = () => {
   const [activeImage, setActiveImage] = useState(0);
@@ -128,21 +218,29 @@ const Index = () => {
       </motion.nav>
 
       {/* Mobile menu */}
-      {menuOpen && isMobile && (
-        <div className="fixed inset-0 bg-white z-40 pt-20 px-6">
-          <div className="flex flex-col space-y-6 pt-6">
-            {menuItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className="text-black text-2xl font-medium border-b border-gray-100 pb-4"
-              >
-                {item.title}
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
+      <AnimatePresence>
+        {menuOpen && isMobile && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 bg-white z-40 pt-20 px-6"
+          >
+            <div className="flex flex-col space-y-6 pt-6">
+              {menuItems.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className="text-black text-2xl font-medium border-b border-gray-100 pb-4"
+                >
+                  {item.title}
+                </button>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <div className="container mx-auto flex-grow px-4">
         <motion.div
@@ -222,23 +320,15 @@ const Index = () => {
                       />
                     </div>
                     <div className="flex-1">
-                      <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2">
-                        <div>
-                          <h3 className="font-bold text-xl">{job.company}</h3>
-                          <p className="text-gray-600 font-medium">{job.role}</p>
-                        </div>
-                        <div className="text-right text-sm text-gray-500 flex-shrink-0">
-                          <div className="flex items-center gap-1">
-                            <Clock className="w-3 h-3" />
-                            <span>{job.timeline}</span>
-                          </div>
-                          <div className="flex items-center gap-1 mt-1">
-                            <MapPin className="w-3 h-3" />
-                            <span>{job.location}</span>
-                          </div>
-                        </div>
-                      </div>
-                      <p className="text-sm text-gray-600 mt-4">{job.description}</p>
+                      <MobileCollapsible 
+                        title={job.company} 
+                        subtitle={job.role}
+                        timeline={job.timeline} 
+                        location={job.location}
+                        defaultOpen={index === 0}
+                      >
+                        <p className="text-sm text-gray-600">{job.description}</p>
+                      </MobileCollapsible>
                     </div>
                   </div>
                 </motion.div>
@@ -257,63 +347,62 @@ const Index = () => {
                   transition={{ duration: 0.5 }}
                   className="card-hover group overflow-hidden rounded-xl bg-white border border-gray-100 shadow-card"
                 >
-                  <div className="h-48 overflow-hidden relative">
+                  <div className="project-image-container">
                     <img
                       src={project.img}
                       alt={project.project.title}
-                      className="w-full h-full object-cover object-top transition-transform group-hover:scale-105 duration-500"
+                      className="project-image transition-transform group-hover:scale-105 duration-500"
                     />
                   </div>
                   <div className="p-6">
-                    <div className="flex items-start justify-between mb-2">
-                      <h3 className="font-bold text-lg">{project.project.title}</h3>
-                      <p className="text-sm text-gray-500 flex items-center gap-1">
-                        <Clock className="w-3 h-3" /> 
-                        {project.timeline}
-                      </p>
-                    </div>
-                    <p className="text-sm text-gray-600 mb-4">{project.description}</p>
-                    
-                    {project.skills && (
-                      <div className="mb-4">
-                        <h4 className="text-sm font-semibold mb-2">Skills</h4>
-                        <div className="flex flex-wrap gap-2">
-                          {project.skills.split(", ").map((skill, i) => (
-                            <span 
-                              key={i} 
-                              className="text-xs px-3 py-1 bg-gray-100 text-gray-700 rounded-full"
-                            >
-                              {skill}
-                            </span>
-                          ))}
+                    <MobileCollapsible 
+                      title={project.project.title} 
+                      timeline={project.timeline}
+                      defaultOpen={!isMobile}
+                    >
+                      <p className="text-sm text-gray-600 mb-4">{project.description}</p>
+                      
+                      {project.skills && (
+                        <div className="mb-4">
+                          <h4 className="text-sm font-semibold mb-2">Skills</h4>
+                          <div className="flex flex-wrap gap-2">
+                            {project.skills.split(", ").map((skill, i) => (
+                              <span 
+                                key={i} 
+                                className="text-xs px-3 py-1 bg-gray-100 text-gray-700 rounded-full"
+                              >
+                                {skill}
+                              </span>
+                            ))}
+                          </div>
                         </div>
+                      )}
+                      
+                      <div className="flex gap-4 mt-4">
+                        {project.project.link && (
+                          <a
+                            href={project.project.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center text-sm font-medium text-black hover:underline"
+                          >
+                            View Project
+                            <ExternalLink className="w-3 h-3 ml-1" />
+                          </a>
+                        )}
+                        {project.github && (
+                          <a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center text-sm font-medium text-black hover:underline"
+                          >
+                            GitHub
+                            <Github className="w-3 h-3 ml-1" />
+                          </a>
+                        )}
                       </div>
-                    )}
-                    
-                    <div className="flex gap-4 mt-4">
-                      {project.project.link && (
-                        <a
-                          href={project.project.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center text-sm font-medium text-black hover:underline"
-                        >
-                          View Project
-                          <ExternalLink className="w-3 h-3 ml-1" />
-                        </a>
-                      )}
-                      {project.github && (
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center text-sm font-medium text-black hover:underline"
-                        >
-                          GitHub
-                          <Github className="w-3 h-3 ml-1" />
-                        </a>
-                      )}
-                    </div>
+                    </MobileCollapsible>
                   </div>
                 </motion.div>
               ))}
@@ -337,44 +426,43 @@ const Index = () => {
                   />
                 </div>
                 <div className="flex-1">
-                  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
-                    <div>
-                      <h3 className="font-bold text-xl">{data.education.school}</h3>
-                      <p className="text-gray-600">{data.education.degree}</p>
-                      <p className="text-gray-600">{data.education.major}</p>
-                    </div>
-                    <div className="text-sm bg-black text-white px-3 py-1 rounded-full">
+                  <MobileCollapsible 
+                    title={data.education.school} 
+                    subtitle={`${data.education.degree}, ${data.education.major}`}
+                    defaultOpen={!isMobile}
+                  >
+                    <div className="text-sm mb-3 inline-block bg-black text-white px-3 py-1 rounded-full">
                       GPA: {data.education.gpa}
                     </div>
-                  </div>
-                  
-                  <div className="mt-6 grid md:grid-cols-2 gap-6">
-                    <div>
-                      <h4 className="font-bold mb-3 text-sm uppercase tracking-wider">Notable Courses</h4>
-                      <div className="space-y-2">
-                        {data.education.courses.map((course, index) => (
-                          <a
-                            key={index}
-                            href={course.code}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-sm block hover:text-black text-gray-600 transition-colors hover:underline"
-                          >
-                            • {course.class}
-                          </a>
-                        ))}
+                    
+                    <div className="mt-6 grid md:grid-cols-2 gap-6">
+                      <div>
+                        <h4 className="font-bold mb-3 text-sm uppercase tracking-wider">Notable Courses</h4>
+                        <div className="space-y-2">
+                          {data.education.courses.map((course, index) => (
+                            <a
+                              key={index}
+                              href={course.code}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-sm block hover:text-black text-gray-600 transition-colors hover:underline"
+                            >
+                              • {course.class}
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                      
+                      <div>
+                        <h4 className="font-bold mb-3 text-sm uppercase tracking-wider">Awards</h4>
+                        <ul className="space-y-2">
+                          {data.education.awards.map((award, index) => (
+                            <li key={index} className="text-sm text-gray-600">• {award}</li>
+                          ))}
+                        </ul>
                       </div>
                     </div>
-                    
-                    <div>
-                      <h4 className="font-bold mb-3 text-sm uppercase tracking-wider">Awards</h4>
-                      <ul className="space-y-2">
-                        {data.education.awards.map((award, index) => (
-                          <li key={index} className="text-sm text-gray-600">• {award}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
+                  </MobileCollapsible>
                 </div>
               </div>
             </motion.div>
