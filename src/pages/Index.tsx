@@ -461,7 +461,7 @@ const Index = () => {
                       id="education"
                       title={data.education.school} 
                       subtitle={`${data.education.degree}, ${data.education.major}`}
-                      defaultOpen={!isMobile}
+                      defaultOpen={false}
                     >
                       <div className="text-sm mb-3 inline-block bg-black text-white px-3 py-1 rounded-full">
                         GPA: {data.education.gpa}
