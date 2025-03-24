@@ -21,7 +21,7 @@ export const data = {
         color: "white",
         project: {title: "Lucy Weninger Soccer Portfolio", link: "https://lucyweninger.com"},
         github: "https://github.com/SamWeninger/lucyweninger.com",
-        timeline: "March 2024",
+        timeline: "March 2025",
         description: "Developed a professional athlete portfolio website to showcase my sister's soccer career achievements and facilitate international recruitment. The site features an elegant, responsive design that highlights player statistics, match footage, and athletic accomplishments. Built with modern web technologies and optimized for performance across all devices.",
         skills: "TypeScript, React, Tailwind CSS, Vite"
       },
