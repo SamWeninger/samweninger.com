@@ -26,6 +26,15 @@ export const data = {
         skills: "TypeScript, React, Tailwind CSS, Vite"
       },
       {
+        img: "https://raw.githubusercontent.com/SamWeninger/johnkim.com/fe32b3c151e50b44abff098fc891fb1c308b94e6/myungkim.png",
+        color: "white",
+        project: {title: "John Kim Professional Portfolio", link: "https://myungkim.netlify.app/"},
+        github: "https://github.com/SamWeninger/johnkim.com",
+        timeline: "2025",
+        description: "Created a modern, professional portfolio website for John Kim, an experienced financial professional specializing in auditing, consulting, and financial analysis. The site highlights John's expertise, career achievements, and consulting services, providing a polished platform for networking and client engagement. Leveraged AI-driven features and a clean, responsive design to ensure an engaging user experience across all devices.",
+        skills: "TypeScript, React, Tailwind CSS, Vite, AI"
+      },
+      {
         img: "/pebbles.png",
         color: "white",
         project: {title: "Pebbles", link: "https://pebbles-capstone.netlify.app/"},
