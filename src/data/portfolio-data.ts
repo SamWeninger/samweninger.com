@@ -8,6 +8,18 @@ export const data = {
       {
         text: "Oregon Coast, 2004",
         img: "/fam.jpg"
+      },
+      {
+        text: "Phuket, Thailand, 2025",
+        img: "/phuket.jpeg"
+      },
+      {
+        text: "Yosemite, 2025",
+        img: "/yosemite.jpg"
+      },
+      {
+        text: "Seattle, 2024",
+        img: "/seattle.jpeg"
       }
     ],
     fName: "sam",
@@ -93,6 +105,16 @@ export const data = {
   work: {
     jobs: [
       {
+        img: "/brix.png",
+        color: "white",
+        company: "Brix",
+        role: "Founding Engineer",
+        location: "Remote, USA",
+        timeline: "October 2024 - Present",
+        description: "At Brix, I deliver end-to-end web applications with intuitive, empathetic user interfaces and robust, scalable backends. My work spans modern frontend frameworks (React, Vue.js), backend development (Node.js, Python, C#), and responsive, accessible design. I specialize in API development and seamless third-party integrations, ensuring high performance and security. As a technical consultant, I provide strategic guidance on technology stack selection, performance optimization, and architecture planning to help individuals and businesses achieve their goals.",
+        skills: "AI, JavaScript, Python, SQL, Docker, React, Tailwind CSS, Vite"
+      },
+      {
         img: "/microsoft.png",
         color: "white",
         company: "Microsoft",
@@ -113,8 +135,8 @@ export const data = {
       {
         img: "/bloorview.jpeg",
         color: "#01ae07",
-        company: "Holland Bloorview", // Kids Rehabilitation Hospital",
-        role: "Research Assistant", //"Computer Engineering Research Assistant",
+        company: "Holland Bloorview",
+        role: "Research Assistant",
         location: "Toronto, Ontario",
         timeline: "Summer 2018, Summer 2019",
         description: "Designed, tested and implemented a data acquisition/biofeedback system to measure and improve gait in lower limb amputees (C++). Implemented a program to efficiently sort and analyze data returned from a biofeedback system (Matlab). Developed algorithm to make accurate interpretations of readings from force sensing resistors (C++)."
