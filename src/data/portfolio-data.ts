@@ -1,118 +1,132 @@
 export const data = {
   home: {
-    pics: [
-      {
-        text: "Vancouver Island, 2002",
-        img: "/sam.jpg"
-      },
-      {
-        text: "Oregon Coast, 2004",
-        img: "/fam.jpg"
-      },
-      {
-        text: "Phuket, Thailand, 2025",
-        img: "/phuket.jpeg"
-      },
-      {
-        text: "Yosemite, 2025",
-        img: "/yosemite.jpg"
-      },
-      {
-        text: "Seattle, 2024",
-        img: "/seattle.jpeg"
-      }
-    ],
     fName: "sam",
     lName: "weninger",
-    description: "Software engineer. Ineligible NHL draft prospect."
+    tagline: "Software engineer. Habs fan. Food eater. Person who breathes.",
+    intro:
+      "I build things on the web like athlete portfolios and trading algorithms. I like food, travel, and hockey... here are some pics of some of those things.",
   },
+  moments: [
+    { img: "/lombard.jpeg", location: "Lombard Street, San Francisco", year: "2025" },
+    { img: "/ocean.jpeg", location: "Ocean Beach, San Francisco", year: "2026" },
+    { img: "/puka.jpeg", location: "Rams gameday, Los Angeles", year: "2025" },
+    { img: "/memorial.jpeg", location: "Memorial Day, Oakland", year: "2026" },
+    { img: "/yosemite.jpg", location: "Yosemite National Park, California", year: "2025" },
+    { img: "/seattle.jpeg", location: "Seattle, Washington", year: "2024" },
+    { img: "/phuket.jpeg", location: "Phuket, Thailand", year: "2025" },
+    { img: "/fam.jpg", location: "Oregon Coast", year: "2004" },
+    { img: "/sam.jpg", location: "Vancouver Island, British Columbia", year: "2002" },
+  ],
   projects: {
     items: [
       {
         img: "/lucy.png",
         color: "white",
-        project: {title: "Lucy Weninger Soccer Portfolio", link: "https://lucyweninger.com"},
+        project: { title: "Lucy Weninger Soccer Portfolio", link: "https://lucyweninger.com" },
         github: "https://github.com/SamWeninger/lucyweninger.com",
         timeline: "March 2025",
-        description: "Developed a professional athlete portfolio website to showcase my sister's soccer career achievements and facilitate international recruitment. The site features an elegant, responsive design that highlights player statistics, match footage, and athletic accomplishments. Built with modern web technologies and optimized for performance across all devices.",
-        skills: "TypeScript, React, Tailwind CSS, Vite"
+        description:
+          "Professional athlete portfolio for my sister's soccer career — stats, match footage, and recruitment-ready design.",
+        skills: "TypeScript, React, Tailwind CSS, Vite",
       },
       {
         img: "https://raw.githubusercontent.com/SamWeninger/johnkim.com/fe32b3c151e50b44abff098fc891fb1c308b94e6/myungkim.png",
         color: "white",
-        project: {title: "John Kim Professional Portfolio", link: "https://myungkim.netlify.app/"},
+        project: { title: "John Kim Professional Portfolio", link: "https://myungkim.netlify.app/" },
         github: "https://github.com/SamWeninger/johnkim.com",
         timeline: "2025",
-        description: "Created a modern, professional portfolio website for John Kim, an experienced financial professional specializing in auditing, consulting, and financial analysis. The site highlights John's expertise, career achievements, and consulting services, providing a polished platform for networking and client engagement. Leveraged AI-driven features and a clean, responsive design to ensure an engaging user experience across all devices.",
-        skills: "TypeScript, React, Tailwind CSS, Vite, AI"
+        description:
+          "Modern portfolio for a financial professional — polished, responsive, and AI-enhanced.",
+        skills: "TypeScript, React, Tailwind CSS, Vite, AI",
       },
       {
         img: "/pebbles.png",
         color: "white",
-        project: {title: "Pebbles", link: "https://pebbles-capstone.netlify.app/"},
+        project: { title: "Pebbles", link: "https://pebbles-capstone.netlify.app/" },
         github: "https://github.com/pebbles-capstone",
-        timeline: "July 2021 - April 2022",
-        description: "Pebbles helps University of Toronto Electrical and Computer Engineering students find like-minded teammates and professors who would make an ideal fit for a design team. This full stack application uses user data and clustering to group users and make suggestions for optimal teammates.",
-        skills: "Python Flask, Docker, React.js, PostgreSQL, Adminer, Notion"
+        timeline: "2021 – 2022",
+        description:
+          "Teammate-matching platform for UofT ECE students using clustering to suggest optimal design teams.",
+        skills: "Python Flask, Docker, React.js, PostgreSQL",
       },
       {
         img: "/course-finder.png",
         color: "#14639f",
-        project: {title: "Sigma Educate", link: ""},
+        project: { title: "Sigma Educate", link: "" },
         github: "https://github.com/ECE444-2021Fall/project1-education-pathways-group-11-sigmalab",
-        timeline: "September 2021 - December 2021",
-        description: "SigmaEducate is a course selection tool for University of Toronto students which supports creating and editing multiple profiles, fast and smooth course navigation, and boasts a modern and easy to use user interface",
-        skills: "Node.js, Machine Learning, AWS (including DynamoDB), Docker, React.js, Netlify"
+        timeline: "2021",
+        description:
+          "Course selection tool for UofT students with multi-profile support and smooth navigation.",
+        skills: "Node.js, Machine Learning, AWS, Docker, React.js",
       },
       {
         img: "/jane-street.png",
         color: "#94d8ac",
-        project: {title: "Jane Street Electronic Trading Challenge (2nd Place)", link: ""},
+        project: { title: "Jane Street ETC — 2nd Place", link: "" },
         github: "https://github.com/SamWeninger/Jane_Street_ETC",
         timeline: "June 2019",
-        description: "Developed a trading algorithm to buy and sell different financial instruments (i.e. stocks, bonds, ETFs, ADRs) in order to maximize profit in a simulated market with other teams. Our team looked to find ETF Arbitrage opportunities in the simulated market and common stock / ADR pairings. Placed 2nd with over 100 undergraduate and graduate student participants in the competition.",
-        skills: "C++"
+        description:
+          "Trading algorithm for ETF arbitrage in a simulated market. 2nd of 100+ participants.",
+        skills: "C++",
       },
       {
         img: "/bri.png",
         color: "#ffffff",
-        project: {title: "Wearable Biofeedback System", link: "https://www.mdpi.com/1424-8220/20/6/1628"},
+        project: {
+          title: "Wearable Biofeedback System",
+          link: "https://www.mdpi.com/1424-8220/20/6/1628",
+        },
         github: "",
-        timeline: "Summer 2018, Summer 2019",
-        description: "Designed a data acquisition / biofeedback system capable of measuring and improving gait in lower limb amputees.",
-        skills: "C++, Arduino, Matlab, Digital Electronics"
+        timeline: "2018 – 2019",
+        description: "Data acquisition system for measuring and improving gait in lower limb amputees.",
+        skills: "C++, Arduino, Matlab",
       },
       {
         img: "/snakes.png",
         color: "#ffffff",
-        project: {title: "Venomous Snake Detection Using Deep Learning", link: ""},
+        project: { title: "Venomous Snake Detection", link: "" },
         github: "https://github.com/SamWeninger/MachineLearning/blob/master/VenomousSnakes.ipynb",
-        timeline: "January 2020 - April 2020",
-        description: "Created a deep learning model to train on web-scraped images of venomous and non-venomous snakes. Final testing accuracy was around 80% for predictions on venomous and non-venomous snakes.",
-        skills: "Python, Bash, Deep Learning (DenseNet-121)"
+        timeline: "2020",
+        description: "Deep learning model on web-scraped snake images. ~80% test accuracy.",
+        skills: "Python, Deep Learning (DenseNet-121)",
       },
       {
         img: "/resume.png",
         color: "#ffffff",
-        project: {title: "Resume", link: "https://github.com/SamWeninger/resume/blob/main/images/resume.png"},
+        project: {
+          title: "Resume",
+          link: "https://github.com/SamWeninger/resume/blob/main/images/resume.png",
+        },
         github: "https://github.com/SamWeninger/resume",
         timeline: "",
-        description: "Resume created using LaTex. Made to be easily editable and customizable.",
-        skills: "LaTex, Bash"
-      }
-    ]
+        description: "LaTeX resume — easily editable and customizable.",
+        skills: "LaTeX, Bash",
+      },
+    ],
   },
   work: {
     jobs: [
+      {
+        img: "/google.png",
+        color: "white",
+        company: "Google",
+        role: "Software Engineer",
+        location: "Mountain View, California",
+        timeline: "Oct 2025 – Present",
+        description:
+          "Ads Enhanced Conversions — building and improving conversion measurement pipelines for Google Ads.",
+        skills: "C++, SQL",
+      },
       {
         img: "/brix.png",
         color: "white",
         company: "Brix",
         role: "Founding Engineer",
         location: "Remote, USA",
-        timeline: "October 2024 - Present",
-        description: "At Brix, I deliver end-to-end web applications with intuitive, empathetic user interfaces and robust, scalable backends. My work spans modern frontend frameworks (React, Vue.js), backend development (Node.js, Python, C#), and responsive, accessible design. I specialize in API development and seamless third-party integrations, ensuring high performance and security. As a technical consultant, I provide strategic guidance on technology stack selection, performance optimization, and architecture planning to help individuals and businesses achieve their goals.",
-        skills: "AI, JavaScript, Python, SQL, Docker, React, Tailwind CSS, Vite"
+        timeline: "Oct 2024 – Oct 2025",
+        description:
+          "End-to-end web applications — React, Vue, Node, Python, C#. API development, integrations, and technical consulting.",
+        skills: "AI, JavaScript, Python, React, Tailwind CSS",
       },
       {
         img: "/microsoft.png",
@@ -120,17 +134,21 @@ export const data = {
         company: "Microsoft",
         role: "Software Engineer",
         location: "Redmond, Washington",
-        timeline: "September 2022 - August 2024",
-        description: "Software Engineer on the Web Experiences Team (WebXT) team at Microsoft. Implemented language backfill logic and enhanced language extraction for +2 Billion URLs indexed by Bing, exposing rich content for +100 million businesses in +150 different markets on Bing (C#). Improved the coverage of Bing Amenities for +6 Million new businesses (+55% feature coverage improvement). Enhanced Bing Amenities quality by +30% leveraging LLMs, benefiting +14M businesses and reducing the frequency of user-reported bugs by +80% (C#, Python). Engineered an automated pipeline (ADF) for discovering new domains for Bing; onboarded +500 new providers, enriching data for +2.7B businesses. Managed a vendor team to develop models for HTML content extraction from new domains, integrating content into Bing (SQL). Developed a real-time monitoring dashboard for Bing rich data with routed alerts for quick, on-call response to data outages and bugs (HTML)."
+        timeline: "Sep 2022 – Aug 2024",
+        description:
+          "WebXT team — language backfill for 2B+ Bing URLs, amenities quality via LLMs (+30%), automated domain discovery pipeline.",
+        skills: "C#, Python, SQL, ADF",
       },
       {
         img: "/huawei.png",
         color: "#Fdf7f7",
         company: "Huawei",
         role: "Software Engineering Intern",
-        location: "Markham, Ontario (Remote)",
-        timeline: "May 2020 - August 2021",
-        description: "Collaborated with a team of architects and engineers to develop a distributed database management system (C++) ready for use in 5G networks. Optimized storage and transactional aspects of a distributed database system, and made server-side modifications to fix and improve the efficiency of client-server database transactions (C++, SQL). Assessed and evaluated functionality of database queries and transactions; uncovered, reproduced, and repaired underlying issues in database, and provided tests for these issues (Python, Bash)."
+        location: "Markham, Ontario",
+        timeline: "May 2020 – Aug 2021",
+        description:
+          "Distributed database management system for 5G networks — storage optimization and transaction efficiency.",
+        skills: "C++, SQL, Python",
       },
       {
         img: "/bloorview.jpeg",
@@ -138,39 +156,41 @@ export const data = {
         company: "Holland Bloorview",
         role: "Research Assistant",
         location: "Toronto, Ontario",
-        timeline: "Summer 2018, Summer 2019",
-        description: "Designed, tested and implemented a data acquisition/biofeedback system to measure and improve gait in lower limb amputees (C++). Implemented a program to efficiently sort and analyze data returned from a biofeedback system (Matlab). Developed algorithm to make accurate interpretations of readings from force sensing resistors (C++)."
-      }
-    ]
+        timeline: "2018 – 2019",
+        description:
+          "Biofeedback system for lower limb amputees — data acquisition, analysis, and force sensor algorithms.",
+        skills: "C++, Matlab, Arduino",
+      },
+    ],
   },
   education: {
     image: "/uoft.png",
     school: "University of Toronto",
     degree: "Bachelor of Applied Science",
     major: "Computer Engineering, Minor in A.I. Engineering",
-    gpa: "3.72/4",
+    gpa: "3.72 / 4.0",
     courses: [
-      {class: "Algorithms and Data Structures", code: "https://engineering.calendar.utoronto.ca/course/ece345h1"},
-      {class: "Operating Systems", code: "https://engineering.calendar.utoronto.ca/course/ece344h1"},
-      {class: "Software Communication and Design", code: "https://engineering.calendar.utoronto.ca/course/ece297h1"},
-      {class: "Applied Fundamentals of Deep Learning", code: "https://engineering.calendar.utoronto.ca/course/aps360h1"},
-      {class: "Introduction to Databases", code: "https://artsci.calendar.utoronto.ca/course/csc343h1"},
-      {class: "Computer Networks", code: "https://engineering.calendar.utoronto.ca/course/ece361h1"},
-      {class: "Introduction to Machine Learning", code: "https://engineering.calendar.utoronto.ca/course/ece421h1"},
-      {class: "Software Engineering", code: "https://engineering.calendar.utoronto.ca/course/ece444h1"},
-      {class: "Introduction to Artificial Intelligence", code: "https://artsci.calendar.utoronto.ca/course/csc384h1"}
+      { class: "Algorithms and Data Structures", code: "https://engineering.calendar.utoronto.ca/course/ece345h1" },
+      { class: "Operating Systems", code: "https://engineering.calendar.utoronto.ca/course/ece344h1" },
+      { class: "Software Communication and Design", code: "https://engineering.calendar.utoronto.ca/course/ece297h1" },
+      { class: "Applied Fundamentals of Deep Learning", code: "https://engineering.calendar.utoronto.ca/course/aps360h1" },
+      { class: "Introduction to Databases", code: "https://artsci.calendar.utoronto.ca/course/csc343h1" },
+      { class: "Computer Networks", code: "https://engineering.calendar.utoronto.ca/course/ece361h1" },
+      { class: "Introduction to Machine Learning", code: "https://engineering.calendar.utoronto.ca/course/ece421h1" },
+      { class: "Software Engineering", code: "https://engineering.calendar.utoronto.ca/course/ece444h1" },
+      { class: "Introduction to Artificial Intelligence", code: "https://artsci.calendar.utoronto.ca/course/csc384h1" },
     ],
     awards: [
       "Graduate with Honours (2022)",
-      "Dean's Honour List (2017-2021)",
+      "Dean's Honour List (2017–2021)",
       "Director's Summer Research Opportunity Award, IBBME @ UofT (2018)",
-      "IBBME Award Winner, IBBME @ UofT (2018)"
-    ]
+      "IBBME Award Winner, IBBME @ UofT (2018)",
+    ],
   },
   footer: {
     github: "https://github.com/SamWeninger",
     linkedin: "https://www.linkedin.com/in/samuel-weninger/",
     hockey: "https://www.eliteprospects.com/player/455776/sam-weninger",
-    message: "https://www.mcdonalds.com/us/en-us/full-menu.html"
-  }
+    message: "https://www.mcdonalds.com/us/en-us/full-menu.html",
+  },
 };
