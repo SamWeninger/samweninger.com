@@ -4,25 +4,25 @@
 
 @layer base {
   :root {
-    --background: 220 20% 98%;
-    --foreground: 220 15% 12%;
-    --card: 220 15% 96%;
-    --card-foreground: 220 15% 12%;
-    --popover: 220 20% 98%;
-    --popover-foreground: 220 15% 12%;
-    --primary: 220 15% 12%;
-    --primary-foreground: 220 20% 98%;
-    --secondary: 220 14% 92%;
-    --secondary-foreground: 220 15% 12%;
-    --muted: 220 12% 90%;
-    --muted-foreground: 220 8% 46%;
-    --accent: 215 65% 52%;
-    --accent-foreground: 220 20% 98%;
+    --background: 38 28% 94%;
+    --foreground: 30 12% 14%;
+    --card: 36 22% 91%;
+    --card-foreground: 30 12% 14%;
+    --popover: 38 28% 94%;
+    --popover-foreground: 30 12% 14%;
+    --primary: 30 12% 14%;
+    --primary-foreground: 38 28% 94%;
+    --secondary: 35 18% 88%;
+    --secondary-foreground: 30 12% 14%;
+    --muted: 34 16% 86%;
+    --muted-foreground: 30 8% 42%;
+    --accent: 215 55% 48%;
+    --accent-foreground: 38 28% 96%;
     --destructive: 0 84% 60%;
-    --destructive-foreground: 220 20% 98%;
-    --border: 220 12% 88%;
-    --input: 220 12% 88%;
-    --ring: 215 65% 52%;
+    --destructive-foreground: 38 28% 96%;
+    --border: 34 14% 82%;
+    --input: 34 14% 82%;
+    --ring: 215 55% 48%;
     --radius: 0.25rem;
   }
 
@@ -82,12 +82,20 @@
     opacity: 0.04;
   }
 
+  .page-shell {
+    @apply w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-10;
+  }
+
+  .section-pad {
+    @apply py-16 sm:py-20 lg:py-24;
+  }
+
   .hero-mesh {
     background-color: hsl(var(--background));
     background-image:
-      radial-gradient(ellipse 80% 60% at 10% 20%, hsl(215 40% 50% / 0.08), transparent),
-      radial-gradient(ellipse 60% 50% at 90% 80%, hsl(220 30% 40% / 0.06), transparent),
-      radial-gradient(ellipse 50% 40% at 50% 50%, hsl(220 15% 50% / 0.04), transparent);
+      radial-gradient(ellipse 80% 60% at 10% 20%, hsl(38 30% 70% / 0.12), transparent),
+      radial-gradient(ellipse 60% 50% at 90% 80%, hsl(34 25% 60% / 0.08), transparent),
+      radial-gradient(ellipse 50% 40% at 50% 50%, hsl(36 20% 55% / 0.05), transparent);
   }
 
   [data-theme='dark'] .hero-mesh {
@@ -127,6 +135,40 @@
     transition-delay: 400ms;
   }
 
+  .hero-thumb img {
+    @apply transition-all duration-500 ease-out;
+  }
+
+  html:not([data-theme='dark']) .hero-thumb img,
+  [data-theme='light'] .hero-thumb img {
+    @apply opacity-100 saturate-100 brightness-100 contrast-100;
+  }
+
+  html:not([data-theme='dark']) .hero-thumb:hover img,
+  [data-theme='light'] .hero-thumb:hover img {
+    @apply saturate-[0.55] brightness-[1.03] contrast-[0.9];
+  }
+
+  [data-theme='dark'] .hero-thumb img {
+    @apply opacity-70 saturate-100 brightness-100 contrast-100;
+  }
+
+  [data-theme='dark'] .hero-thumb:hover img {
+    @apply opacity-100;
+  }
+
+  .moments-masonry {
+    @apply flex gap-3 sm:gap-4 items-start;
+  }
+
+  .moments-column {
+    @apply flex flex-1 flex-col gap-3 sm:gap-4 min-w-0;
+  }
+
+  .moments-item {
+    @apply relative w-full shrink-0;
+  }
+
   .photo-frame {
     @apply relative overflow-hidden bg-muted/30;
   }
@@ -134,6 +176,10 @@
   .photo-frame img {
     @apply w-full h-auto block ease-out;
     transition: transform 1.2s;
+  }
+
+  .moments-item img {
+    @apply w-full h-auto block;
   }
 
   .photo-frame:hover img {

@@ -107,7 +107,7 @@ export const data = {
   work: {
     jobs: [
       {
-        img: "/google.png",
+        img: "/google-g.png",
         color: "white",
         company: "Google",
         role: "Software Engineer",
@@ -119,7 +119,7 @@ export const data = {
       },
       {
         img: "/brix.png",
-        color: "white",
+        color: "#EBF4FA",
         company: "Brix",
         role: "Founding Engineer",
         location: "Remote, USA",

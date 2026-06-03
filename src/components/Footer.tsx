@@ -62,7 +62,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-5 sm:px-8 py-12 flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div className="page-shell py-10 flex flex-col sm:flex-row items-center justify-between gap-6">
         <div className="text-center sm:text-left">
           <p className="label-caps">© {year} Sam Weninger</p>
           {pageViews !== null && (

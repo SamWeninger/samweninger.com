@@ -7,11 +7,11 @@ const Career = () => {
   const [expanded, setExpanded] = useState<number | null>(0);
 
   return (
-    <section id="career" ref={ref} className="py-24 sm:py-32 px-5 sm:px-8 border-t border-border/50">
-      <div className="max-w-7xl mx-auto">
-        <div className={`reveal ${inView ? "visible" : ""} mb-16`}>
-          <p className="label-caps mb-4">Experience</p>
-          <h2 className="display-text text-[clamp(2.5rem,8vw,5rem)]">Where I've worked</h2>
+    <section id="career" ref={ref} className="section-pad border-t border-border/40">
+      <div className="page-shell">
+        <div className={`reveal ${inView ? "visible" : ""} mb-10`}>
+          <p className="label-caps mb-3">Experience</p>
+          <h2 className="display-text text-[clamp(2.5rem,7vw,4.5rem)]">Where I've worked</h2>
         </div>
 
         <div className="divide-y divide-border">
@@ -25,25 +25,31 @@ const Career = () => {
               >
                 <button
                   onClick={() => setExpanded(isOpen ? null : i)}
-                  className="w-full py-8 sm:py-10 flex items-start gap-6 sm:gap-10 text-left group"
+                  className="w-full py-6 sm:py-8 flex items-start gap-4 sm:gap-8 text-left group"
                 >
-                  <span className="label-caps w-8 shrink-0 mt-1">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="label-caps w-7 shrink-0 mt-1">{String(i + 1).padStart(2, "0")}</span>
 
                   <div
-                    className="w-12 h-12 sm:w-14 sm:h-14 shrink-0 overflow-hidden flex items-center justify-center border border-border"
+                    className={`w-11 h-11 sm:w-12 sm:h-12 shrink-0 overflow-hidden flex items-center justify-center ${
+                      job.color === "white" ? "border border-border" : ""
+                    }`}
                     style={{ backgroundColor: job.color }}
                   >
-                    <img src={job.img} alt={job.company} className="w-full h-full object-contain p-1.5" />
+                    <img
+                      src={job.img}
+                      alt={job.company}
+                      className={`w-full h-full object-contain ${job.color === "white" ? "p-1.5" : "p-0"}`}
+                    />
                   </div>
 
                   <div className="flex-1 min-w-0">
                     <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 sm:gap-4">
-                      <h3 className="font-display text-2xl sm:text-3xl uppercase tracking-tight group-hover:text-foreground/70 transition-colors">
+                      <h3 className="font-display text-xl sm:text-2xl uppercase tracking-tight group-hover:text-foreground/70 transition-colors">
                         {job.company}
                       </h3>
                       <span className="label-caps">{job.timeline}</span>
                     </div>
-                    <p className="text-muted-foreground mt-1">
+                    <p className="text-muted-foreground mt-0.5 text-sm sm:text-base">
                       {job.role} · {job.location}
                     </p>
                   </div>
@@ -55,15 +61,13 @@ const Career = () => {
 
                 <div
                   className={`overflow-hidden transition-all duration-500 ease-out ${
-                    isOpen ? "max-h-96 opacity-100 pb-8" : "max-h-0 opacity-0"
+                    isOpen ? "max-h-96 opacity-100 pb-6" : "max-h-0 opacity-0"
                   }`}
                 >
-                  <div className="pl-[4.5rem] sm:pl-[7.5rem] pr-4 max-w-2xl">
-                    <p className="text-muted-foreground leading-relaxed">{job.description}</p>
+                  <div className="pl-[3.75rem] sm:pl-[6.5rem] lg:pl-[7rem] pr-4 max-w-3xl">
+                    <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">{job.description}</p>
                     {job.skills && (
-                      <p className="mt-4 text-xs uppercase tracking-wider text-muted-foreground/70">
-                        {job.skills}
-                      </p>
+                      <p className="mt-3 text-xs uppercase tracking-wider text-muted-foreground/70">{job.skills}</p>
                     )}
                   </div>
                 </div>

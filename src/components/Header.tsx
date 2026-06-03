@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Moon, Sun } from "lucide-react";
 import { useTheme } from "@/context/ThemeContext";
 
 const links = [
@@ -12,13 +13,26 @@ const scrollTo = (href: string) => {
   document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
 };
 
-const Header = () => {
+const ThemeToggle = ({ className = "" }: { className?: string }) => {
   const { theme, toggleTheme } = useTheme();
+
+  return (
+    <button
+      onClick={toggleTheme}
+      className={`p-2 text-muted-foreground hover:text-foreground transition-colors ${className}`}
+      aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+    >
+      {theme === "dark" ? <Sun className="w-[18px] h-[18px]" strokeWidth={1.5} /> : <Moon className="w-[18px] h-[18px]" strokeWidth={1.5} />}
+    </button>
+  );
+};
+
+const Header = () => {
   const [visible, setVisible] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > window.innerHeight * 0.6);
+    const onScroll = () => setVisible(window.scrollY > window.innerHeight * 0.5);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -26,11 +40,11 @@ const Header = () => {
   return (
     <>
       <header
-        className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
+        className={`fixed top-0 left-0 right-0 w-full z-50 transition-all duration-500 ${
           visible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 pointer-events-none"
         }`}
       >
-        <div className="mx-auto max-w-7xl px-5 sm:px-8 py-4 flex items-center justify-between bg-background/80 backdrop-blur-md border-b border-border/50">
+        <div className="w-full flex items-center justify-between px-4 sm:px-6 lg:px-10 py-3.5 bg-background/90 backdrop-blur-md border-b border-border/50">
           <button
             onClick={() => scrollTo("#top")}
             className="font-display text-sm tracking-[0.2em] uppercase hover:text-accent transition-colors"
@@ -38,7 +52,7 @@ const Header = () => {
             SW
           </button>
 
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-6 lg:gap-10">
             {links.map((link) => (
               <button
                 key={link.href}
@@ -48,22 +62,15 @@ const Header = () => {
                 {link.label}
               </button>
             ))}
-            <button
-              onClick={toggleTheme}
-              className="label-caps hover:text-accent transition-colors"
-              aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
-            >
-              {theme === "light" ? "Dark" : "Light"}
-            </button>
+            <ThemeToggle />
           </nav>
 
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden label-caps"
-            aria-label="Toggle menu"
-          >
-            {menuOpen ? "Close" : "Menu"}
-          </button>
+          <div className="flex md:hidden items-center gap-3">
+            <ThemeToggle />
+            <button onClick={() => setMenuOpen(!menuOpen)} className="label-caps" aria-label="Toggle menu">
+              {menuOpen ? "Close" : "Menu"}
+            </button>
+          </div>
         </div>
       </header>
 
@@ -81,9 +88,6 @@ const Header = () => {
               {link.label}
             </button>
           ))}
-          <button onClick={toggleTheme} className="label-caps mt-4">
-            {theme === "light" ? "Dark mode" : "Light mode"}
-          </button>
         </div>
       )}
     </>

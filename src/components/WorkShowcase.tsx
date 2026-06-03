@@ -15,40 +15,38 @@ const WorkShowcase = () => {
   };
 
   return (
-    <section id="work" ref={ref} className="py-24 sm:py-32 border-t border-border/50">
-      <div className="px-5 sm:px-8 max-w-7xl mx-auto">
-        <div className={`reveal ${inView ? "visible" : ""} flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-12`}>
-          <div>
-            <p className="label-caps mb-4">Selected projects</p>
-            <h2 className="display-text text-[clamp(2.5rem,8vw,5rem)]">Things I've built</h2>
-          </div>
-          <div className="flex gap-2">
-            <button
-              onClick={() => scroll("left")}
-              className="p-3 border border-border hover:border-foreground/30 transition-colors"
-              aria-label="Scroll left"
-            >
-              <ArrowLeft className="w-4 h-4" />
-            </button>
-            <button
-              onClick={() => scroll("right")}
-              className="p-3 border border-border hover:border-foreground/30 transition-colors"
-              aria-label="Scroll right"
-            >
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </div>
+    <section id="work" ref={ref} className="section-pad border-t border-border/40">
+      <div className="page-shell mb-8 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+        <div className={`reveal ${inView ? "visible" : ""}`}>
+          <p className="label-caps mb-3">Selected projects</p>
+          <h2 className="display-text text-[clamp(2.5rem,7vw,4.5rem)]">Things I've built</h2>
+        </div>
+        <div className="flex gap-2 shrink-0">
+          <button
+            onClick={() => scroll("left")}
+            className="p-2.5 border border-border hover:border-foreground/30 transition-colors"
+            aria-label="Scroll left"
+          >
+            <ArrowLeft className="w-4 h-4" />
+          </button>
+          <button
+            onClick={() => scroll("right")}
+            className="p-2.5 border border-border hover:border-foreground/30 transition-colors"
+            aria-label="Scroll right"
+          >
+            <ArrowRight className="w-4 h-4" />
+          </button>
         </div>
       </div>
 
       <div
         ref={scrollRef}
-        className="flex gap-4 sm:gap-5 overflow-x-auto hide-scrollbar snap-x snap-mandatory px-5 sm:px-8 pb-4"
+        className="flex gap-3 sm:gap-4 overflow-x-auto hide-scrollbar snap-x snap-mandatory pl-4 sm:pl-6 lg:pl-[max(1.5rem,calc((100vw-1600px)/2+2.5rem))] pr-4 sm:pr-6 pb-2"
       >
         {data.projects.items.map((project, i) => (
           <article
             key={project.project.title}
-            className={`work-card group w-[72vw] sm:w-[340px] lg:w-[360px] ${inView ? "visible" : ""} reveal`}
+            className={`work-card group w-[68vw] sm:w-[300px] lg:w-[320px] ${inView ? "visible" : ""} reveal`}
             style={{ transitionDelay: `${(i % 4) * 100 + 100}ms` }}
           >
             <div
@@ -58,13 +56,13 @@ const WorkShowcase = () => {
               <img
                 src={project.img}
                 alt={project.project.title}
-                className="absolute inset-0 w-full h-full object-contain p-8 sm:p-10 transition-transform duration-500 group-hover:scale-[0.97]"
+                className="absolute inset-0 w-full h-full object-contain p-6 sm:p-8 transition-transform duration-500 group-hover:scale-[0.97]"
                 loading="lazy"
               />
 
-              <div className="absolute inset-0 bg-background/80 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 sm:p-6">
-                <p className="text-sm leading-relaxed text-foreground/90 mb-4">{project.description}</p>
-                <div className="flex flex-wrap gap-1.5 mb-4">
+              <div className="absolute inset-0 bg-background/80 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 sm:p-5">
+                <p className="text-sm leading-relaxed text-foreground/90 mb-3">{project.description}</p>
+                <div className="flex flex-wrap gap-1.5 mb-3">
                   {project.skills.split(", ").map((skill) => (
                     <span
                       key={skill}
@@ -100,13 +98,11 @@ const WorkShowcase = () => {
               </div>
             </div>
 
-            <div className="flex items-baseline justify-between gap-3 mt-3 px-0.5">
-              <h3 className="font-display text-sm sm:text-base uppercase tracking-tight truncate">
+            <div className="flex items-baseline justify-between gap-3 mt-2.5 px-0.5">
+              <h3 className="font-display text-sm uppercase tracking-tight truncate">
                 {project.project.title}
               </h3>
-              {project.timeline && (
-                <span className="label-caps shrink-0">{project.timeline}</span>
-              )}
+              {project.timeline && <span className="label-caps shrink-0">{project.timeline}</span>}
             </div>
           </article>
         ))}
